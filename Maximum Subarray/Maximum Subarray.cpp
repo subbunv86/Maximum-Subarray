@@ -2,10 +2,46 @@
 //
 
 #include <iostream>
+#include<vector>
+using namespace std;
+class Solution {
+public:
+	int maxSubArray(vector<int>& nums)
+	{
+		int nMaxSum = nums[0];
+		int nTempSum = 0;
+		int nSize = nums.size();
+		if (nSize == 1)
+			return nums[0];
+		for (int i = 0; i < nums.size(); i++)
+		{
+			if (nums[i] > nMaxSum)
+				nMaxSum = nums[i];
+			int j = i;
+			nTempSum = 0;
+			while (j < nSize)
+			{
+				if (j < nSize)
+				{
+					nTempSum += nums[j] ;
+					if (nTempSum > nMaxSum)
+						nMaxSum = nTempSum;
+				}
+				
+				j ++;
+			}
+		}
+
+		return nMaxSum;
+	}
+
+};
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	Solution slnObj;
+	vector<int> nums = {8,-19,5,-4,20};
+    std::cout << slnObj.maxSubArray(nums);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
